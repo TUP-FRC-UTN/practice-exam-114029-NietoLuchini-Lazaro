@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Orders</h1>
+  <button type="button" class="btn btn-primary" [routerLink]="['/newOrder']" routerLinkActive="router-link-active">Nueva orden</button>
+  
+  <div class="mb-3 m-5">
+    <input type="text" class="form-control" id="searchInput" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Buscar por nombre o por email">
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Codigo de orden</th>
+        <th scope="col">Nombre del cliente</th>
+        <th scope="col">Email</th>
+        <th scope="col">Cantidad de productos</th>
+        <th scope="col">Fecha de compra</th>
+        <th scope="col">Total del pedido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of filteredOrders">
+        <td>{{order.orderCode}}</td>
+        <td>{{order.customerName}}</td>
+        <td>{{order.email}}</td>
+        <td>{{order.products.length}}</td>
+        <td>{{order.timestamp | date:'shortDate'}}</td>
+        <td>{{order.total | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
